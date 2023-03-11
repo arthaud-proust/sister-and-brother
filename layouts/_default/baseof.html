@@ -40,14 +40,25 @@
     {{ end }}
 </head>
 <body class="bg-secondary text-primary text-xl">
-    <div class="min-h-screen">
-        {{- partial "header" . -}}
+    <div asscroll-container>
+        <div asscroll class="container">
+            <div class="min-h-screen">
+                {{- partial "header" . -}}
 
-        <main>
-            {{- block "main" . }}{{- end }}
-        </main>
+                <main>
+                    {{- block "main" . }}{{- end }}
+                </main>
+            </div>
+
+            {{- partial "footer" . -}}
+        </div>
     </div>
 
-    {{- partial "footer" . -}}
+    <div class="asscrollbar">
+        <div class="asscrollbar__handle">
+            <div></div>
+        </div>
+    </div>
+
 </body>
 </html>
