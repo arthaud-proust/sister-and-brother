@@ -7,7 +7,11 @@ module.exports = {
     "./content/**/*.html"
   ],
   theme: {
-    extends: {
+    extend: {
+      aspectRatio: {
+        portrait: '2 / 3',
+        landscape: '3 / 2',
+      }
     },
     fontFamily: {
       'sans': ['Geomanist', ...defaultTheme.fontFamily.sans],
