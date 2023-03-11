@@ -1,5 +1,5 @@
-/* TailwindCSS base styles */
-/* see https://tailwindcss.com/docs/functions-and-directives#tailwind */
+@import "fonts.css";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -11,7 +11,7 @@
     }
 
     .text-h1 {
-        @apply text-5xl md:text-7xl font-display font-extrabold uppercase;
+        @apply text-7xl md:text-8xl font-display font-extrabold uppercase;
     }
 
     .text-h2 {

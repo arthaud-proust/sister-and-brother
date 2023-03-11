@@ -1,3 +1,4 @@
+const defaultTheme = require('tailwindcss/defaultTheme')
 module.exports = {
   content: [
     "./themes/**/layouts/**/*.html",
@@ -8,13 +9,13 @@ module.exports = {
   theme: {
     extends: {
     },
-    colors: {
-      primary: '#d38b5e',
-      secondary: 'black',
-    },
     fontFamily: {
-      sans: ['Hind'],
-      display: ['Montserrat']
+      'sans': ['Geomanist', ...defaultTheme.fontFamily.sans],
+      'display': ['Manuscribe'],
+    },
+    colors: {
+      primary: 'white',
+      secondary: 'black',
     },
     container: {
       center: true,
