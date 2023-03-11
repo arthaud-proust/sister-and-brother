@@ -4,8 +4,8 @@
     "scripts": {
         "hugo": "hugo serve --disableFastRender",
         "hugo:build": "hugo --gc --minify",
-        "tailwind": "npx tailwindcss -i ./assets/css/styles.css -o ./assets/css/output/styles.css --watch",
-        "tailwind:build": "npx tailwindcss -i ./assets/css/styles.css -o ./assets/css/output/styles.css --minify",
+        "tailwind": "npx tailwindcss -i ./assets/css/app.css -o ./static/css/build.css --watch",
+        "tailwind:build": "npx tailwindcss -i ./assets/css/app.css -o ./static/css/build.css --minify",
         "build": "npm run tailwind:build && npm run hugo:build"
     },
     "devDependencies": {

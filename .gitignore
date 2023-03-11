@@ -8,7 +8,7 @@ resources/
 hugo_stats.json
 package-lock.json
 
-/assets/css/output
+/static/css/build.css
 
 .DS_Store
 .idea

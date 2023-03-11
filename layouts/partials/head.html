@@ -12,6 +12,5 @@
 <script src="{{ $script.RelPermalink }}"></script>
 <script defer src="https://unpkg.com/alpinejs@3.10.5/dist/cdn.min.js"></script>
 
-{{- $styles := resources.Get "css/output/styles.css" -}}
-<link rel="preload" href="{{ $styles.RelPermalink }}" as="style" onload="this.onload=null;this.rel='stylesheet'">
-<noscript><link rel="stylesheet" href="{{ $styles.RelPermalink }}"></noscript>
+<link rel="preload" href="/css/build.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="/css/build.css"></noscript>
