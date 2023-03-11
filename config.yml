@@ -1,5 +1,5 @@
 languageCode: 'fr'
-baseURL: localhost
+baseURL: ''
 removePathAccents: true
 
 params:
