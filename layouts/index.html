@@ -1,21 +1,30 @@
 {{ define "main" }}
 
 <section class="intro relative h-screen flex flex-col justify-center bg-primary">
-    <img data-speed="0.45" class="floating-image absolute right-[15%] bottom-[10%] w-[10%]" src="https://picsum.photos/300/200?grayscale&random=1" alt=" ">
-    <img data-speed="0.6" class="floating-image absolute left-[10%] top-[15%] w-[20%]" src="https://picsum.photos/300/200?grayscale&random=3" alt=" ">
-    <img data-speed="0.9" class="floating-image absolute right-[10%] top-[50%] w-[40%]" src="https://picsum.photos/300/200?grayscale&random=2" alt=" ">
-    <img data-speed="1.5" class="z-20 floating-image absolute left-[5%] top-[90%] w-[60%]" src="https://picsum.photos/300/200?grayscale&random=4" alt=" ">
-    <h1 class="text-h1 text-center z-10 mix-blend-difference ">Une soeur et un frere</h1>
+    <img data-s="0.45" class="floating-image absolute right-[15%] bottom-[10%] w-[10%]" src="https://picsum.photos/300/200?grayscale&random=1" alt=" ">
+    <img data-s="0.6" class="floating-image absolute left-[10%] top-[15%] w-[20%]" src="https://picsum.photos/300/200?grayscale&random=3" alt=" ">
+    <img data-s="0.9" class="floating-image absolute right-[10%] top-[50%] w-[40%]" src="https://picsum.photos/300/200?grayscale&random=2" alt=" ">
+    <img data-s="1.5" class="z-20 floating-image absolute left-[5%] top-[90%] w-[60%]" src="https://picsum.photos/300/200?grayscale&random=4" alt=" ">
 
+    <h1 class="text-display text-center z-10 mix-blend-difference ">
+        <span>Une soeur</span><br>
+        <span>& un frere</span>
+    </h1>
 </section>
 
-<section class="py-24 bg-secondary overflow-hidden">
+<section class="py-24 overflow-hidden">
     <section class="test  relative h-screen flex flex-col justify-center p-24">
         <img src="https://picsum.photos/300/200?grayscale&random=1" alt=" ">
-        <h2 class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-h1 text-center text-primary">Tous les dix ans</h2>
+        <h2 class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-display text-center text-primary">Tous les dix ans</h2>
     </section>
 </section>
-<div class="h-screen bg-secondary">
 
-</div>
+<section class="min-h-screen py-24">
+    <div class="container">
+        <h2 class="text-h1">
+            Avril 2012
+        </h2>
+        <p class="text-body italic">Au sein de la famille Proust</p>
+    </div>
+</section>
 {{ end }}

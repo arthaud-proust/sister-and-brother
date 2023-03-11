@@ -40,14 +40,19 @@
     {{ end }}
 </head>
 <body class="bg-secondary font-sans text-primary text-xl">
-    <div class="min-h-screen">
-        {{- partial "header" . -}}
+    <div id="smooth-wrapper">
+        <div id="smooth-content">
+            <div class="min-h-screen">
+                {{- partial "header" . -}}
 
-        <main>
-            {{- block "main" . }}{{- end }}
-        </main>
+                <main>
+                    {{- block "main" . }}{{- end }}
+                </main>
+            </div>
+
+            {{- partial "footer" . -}}
+        </div>
     </div>
 
-    {{- partial "footer" . -}}
 </body>
 </html>
