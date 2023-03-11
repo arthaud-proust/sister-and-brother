@@ -17,7 +17,8 @@ window.addEventListener("load", () => {
             pin: true,
             pinType: isTouch ? 'fixed' : 'transform',
             scrub: 1,
-            trigger: ".intro"
+            trigger: ".intro",
+            end: "200%",
         },
         y: (i, target) => -totalScroll * target.dataset.s,
         ease: "none"
