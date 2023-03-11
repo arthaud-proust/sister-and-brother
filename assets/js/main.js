@@ -1,7 +1,7 @@
 gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
 
 const smoother = ScrollSmoother.create({
-    smooth: 2,               // how long (in seconds) it takes to "catch up" to the native scroll position
+    smooth: 1.5,               // how long (in seconds) it takes to "catch up" to the native scroll position
     effects: true,           // looks for data-speed and data-lag attributes on elements
 });
 
@@ -21,15 +21,66 @@ window.addEventListener("load", () => {
         ease: "none"
     });
 
-    gsap.from(".test > *", {
+    gsap.from(".zoom > *", {
         scrollTrigger: {
             pin: true,
             pinType: isTouch ? 'fixed' : 'transform',
             scrub: 2,
-            trigger: ".test"
+            trigger: ".zoom"
         },
         scale: 1.3,
         autoAlpha: 0,
         ease: "sine.out"
+    });
+
+    const tl = gsap.timeline({
+        scrollTrigger: {
+            pin: true,
+            pinType: isTouch ? 'fixed' : 'transform',
+            scrub: 1,
+            trigger: ".test"
+        },
+    })
+    tl.to(".test .after", {
+        opacity: 1,
+        ease: "none"
+    });
+    tl.to(".test .before", {
+        opacity: 0,
+        ease: "none"
+    });
+
+    const tl2 = gsap.timeline({
+        scrollTrigger: {
+            pin: true,
+            pinType: isTouch ? 'fixed' : 'transform',
+            scrub: 1,
+            trigger: ".test2"
+        },
+    })
+    tl2.to(".test2 .after", {
+        opacity: 1,
+        ease: "none"
+    });
+    tl2.to(".test2 .before", {
+        opacity: 0,
+        ease: "none"
+    });
+
+    const tl3 = gsap.timeline({
+        scrollTrigger: {
+            pin: true,
+            pinType: isTouch ? 'fixed' : 'transform',
+            scrub: 1,
+            trigger: ".test3"
+        },
+    })
+    tl3.to(".test3 .after", {
+        opacity: 1,
+        ease: "none"
+    });
+    tl3.to(".test3 .before", {
+        opacity: 0,
+        ease: "none"
     });
 });
