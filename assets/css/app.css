@@ -14,8 +14,12 @@ html {
         @apply grid grid-cols-6 md:grid-cols-12 md:gap-x-12 xl:gap-x-20;
     }
 
+    .text-display {
+        @apply text-8xl font-display font-extrabold uppercase;
+    }
+
     .text-h1 {
-        @apply text-7xl md:text-8xl font-display font-extrabold uppercase;
+        @apply text-7xl md:text-6xl font-sans font-extralight;
     }
 
     .text-h2 {
