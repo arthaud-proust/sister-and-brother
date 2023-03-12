@@ -19,7 +19,7 @@ module.exports = {
     },
     colors: {
       primary: 'white',
-      secondary: 'black',
+      secondary: '#111111',
     },
     container: {
       center: true,
