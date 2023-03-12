@@ -14,7 +14,7 @@ window.addEventListener("load", () => {
         scrollTrigger: {
             pin: true,
             pinType: isTouch ? 'fixed' : 'transform',
-            scrub: 1,
+            scrub: 2,
             trigger: ".intro",
         },
         y: (i, target) => -totalScroll * target.dataset.s,
