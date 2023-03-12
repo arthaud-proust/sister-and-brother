@@ -3,10 +3,9 @@ gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
 const smoother = ScrollSmoother.create({
     smooth: 1.5,               // how long (in seconds) it takes to "catch up" to the native scroll position
     effects: true,           // looks for data-speed and data-lag attributes on elements
-    smoothTouch: 0.1,
+    smoothTouch: 0,
     normalizeScroll: true,
-    ignoreMobileResize: true,
-    speed: 0.8
+    // ignoreMobileResize: true,
 });
 
 const isTouch = 'ontouchstart' in document.documentElement
