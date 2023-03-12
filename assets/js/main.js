@@ -48,6 +48,19 @@ window.addEventListener("load", () => {
     });
 
     document.querySelectorAll('.beforeAfter').forEach((el, i) => addTriggerForBeforeAfterSection(el, i))
+
+    const tlOutro = gsap.timeline({
+        scrollTrigger: {
+            pin: true,
+            pinType: isTouch ? 'fixed' : 'transform',
+            scrub: 4,
+            trigger: ".outro",
+        }
+    });
+    tlOutro.to(".outro-inner", {
+        opacity: 1,
+        ease: "none"
+    });
 });
 
 function addTriggerForBeforeAfterSection(el, i) {
