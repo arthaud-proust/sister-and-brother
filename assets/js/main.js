@@ -47,7 +47,24 @@ window.addEventListener("load", () => {
         ease: "sine.out"
     });
 
-    document.querySelectorAll('.beforeAfter').forEach((el, i) => addTriggerForBeforeAfterSection(el, i))
+    const BFimages = gsap.utils.toArray('.beforeAfter');
+    BFimages.forEach(BFimage => {
+        console.log(BFimage.querySelector('.after'))
+        gsap.timeline({
+            scrollTrigger: {
+                scrub: 1,
+                start: 'top center',
+                end: 'bottom center',
+                trigger: BFimage
+            },
+        }).to(BFimage.querySelector('.after'), {
+            opacity: 1,
+            ease: "none"
+        }).to(BFimage.querySelector('.before'), {
+            opacity: 0,
+            ease: "none"
+        });
+    });
 
     const tlOutro = gsap.timeline({
         scrollTrigger: {
@@ -62,27 +79,3 @@ window.addEventListener("load", () => {
         ease: "none"
     });
 });
-
-function addTriggerForBeforeAfterSection(el, i) {
-    const className = 'beforeAfter-' + i;
-    const classSelector = '.' + className;
-
-    el.classList.add('beforeAfter-' + i);
-    const tl = gsap.timeline({
-        scrollTrigger: {
-            scrub: 1,
-            start: 'top center',
-            end: 'bottom center',
-            trigger: document.querySelector(classSelector)
-        },
-    })
-
-    tl.to(classSelector + " .after", {
-        opacity: 1,
-        ease: "none"
-    });
-    tl.to(classSelector + " .before", {
-        opacity: 0,
-        ease: "none"
-    });
-}

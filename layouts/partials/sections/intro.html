@@ -1,13 +1,4 @@
 <section class="intro relative h-screen flex flex-col justify-center bg-primary">
-    <div class="z-20 floating-image absolute -translate-x-1/2 left-[50%] top-[150%] w-[25%] md:w-[15%]" data-grow="3"
-         data-s="0.4">
-        {{ partial "image" (dict
-        "img" "img/2012/both-portrait-front-of-bridge.jpg"
-        "opt" (dict
-        "size" "400x"
-        )
-        )}}
-    </div>
     <div class="floating-image absolute left-[10%] top-[15%] w-[20%]" data-s="0.4">
         {{ partial "image" (dict
         "img" "img/2022/both-portrait-aside-barrier.jpg"
@@ -29,6 +20,16 @@
         "img" "img/2012/both-landscape-wall.jpg"
         "opt" (dict
         "size" "1000x"
+        )
+        )}}
+    </div>
+
+    <div class="z-20 floating-image absolute -translate-x-1/2 left-[50%] top-[150%] w-[25%] md:w-[15%]" data-grow="3"
+         data-s="0.4">
+        {{ partial "image" (dict
+        "img" "img/2012/both-portrait-front-of-bridge.jpg"
+        "opt" (dict
+        "size" "400x"
         )
         )}}
     </div>
