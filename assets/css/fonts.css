@@ -1,7 +1,8 @@
 @font-face {
     font-family: 'Manuscribe';
     src: local('Manuscribe Regular'), local('Manuscribe-Regular'),
-    url('/fonts/manuscribe/ManuscribeFree-Regular.otf') format('opentype');
+    url('/fonts/manuscribe/Manuscribe-Regular.otf') format('opentype'),
+    url('/fonts/manuscribe/Manuscribe-Regular.ttf') format('truetype');
     font-weight: 400;
     font-style: normal;
 }
@@ -9,7 +10,8 @@
 @font-face {
     font-family: 'Manuscribe';
     src: local('Manuscribe Italic'), local('Manuscribe-Italic'),
-    url('/fonts/manuscribe/ManuscribeFree-Italic.otf') format('opentype');
+    url('/fonts/manuscribe/Manuscribe-Italic.otf') format('opentype'),
+    url('/fonts/manuscribe/Manuscribe-Italic.ttf') format('truetype');
     font-weight: 400;
     font-style: italic;
 }
