@@ -40,16 +40,17 @@ window.addEventListener("load", () => {
             scrub: 2,
             trigger: ".zoom"
         },
-    });
-    tlZoom.from(".zoom > div", {
+    }).from(".zoom > h2", {
+        opacity: 0,
+        ease: "sine.out"
+    }).to(".zoom > h2", {
+        opacity: 0,
+        ease: "sine.out"
+    }).from(".zoom > div", {
         scale: 1.3,
         autoAlpha: 0,
         ease: "sine.out"
-    });
-    tlZoom.from(".zoom > h2", {
-        opacity: 0,
-        ease: "sine.out"
-    });
+    })
 
     const BFimages = gsap.utils.toArray('.beforeAfter');
     BFimages.forEach(BFimage => {
@@ -77,8 +78,7 @@ window.addEventListener("load", () => {
             scrub: 4,
             trigger: ".outro",
         }
-    });
-    tlOutro.to(".outro-inner", {
+    }).to(".outro-inner", {
         opacity: 1,
         ease: "none"
     });
