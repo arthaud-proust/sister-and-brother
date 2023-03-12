@@ -3,6 +3,10 @@ gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
 const smoother = ScrollSmoother.create({
     smooth: 1.5,               // how long (in seconds) it takes to "catch up" to the native scroll position
     effects: true,           // looks for data-speed and data-lag attributes on elements
+    smoothTouch: 0.1,
+    normalizeScroll: true,
+    ignoreMobileResize: true,
+    speed: 0.8
 });
 
 const isTouch = 'ontouchstart' in document.documentElement
@@ -14,8 +18,8 @@ window.addEventListener("load", () => {
         scrollTrigger: {
             pin: true,
             pinType: isTouch ? 'fixed' : 'transform',
-            scrub: 4,
-            trigger: ".intro",
+            scrub: 1,
+            trigger: ".intro"
         }
     });
     tlIntro.to(".floating-image", {
