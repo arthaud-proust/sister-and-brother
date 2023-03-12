@@ -1,7 +1,7 @@
 div#wcb.carbonbadge {
     --b1: white;
     --b2: transparent;
-    @apply text-end text-body;
+    @apply md:text-end text-body;
 }
 
 div#wcb div#wcb_p span#wcb_g,
