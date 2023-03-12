@@ -19,7 +19,7 @@ html {
     }
 
     h1, h2 {
-        @apply text-8xl font-display font-extrabold uppercase;
+        @apply text-8xl font-display uppercase;
     }
 
     h3 {

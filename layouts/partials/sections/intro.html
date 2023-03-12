@@ -1,5 +1,6 @@
 <section class="intro relative h-screen flex flex-col justify-center bg-primary">
-    <div data-s="0.4" data-grow="3" class="floating-image absolute -translate-x-1/2 left-[50%] top-[150%] w-[25%] md:w-[15%]">
+    <div class="z-20 floating-image absolute -translate-x-1/2 left-[50%] top-[150%] w-[25%] md:w-[15%]" data-grow="3"
+         data-s="0.4">
         {{ partial "image" (dict
         "img" "img/2012/both-portrait-front-of-bridge.jpg"
         "opt" (dict
@@ -7,7 +8,7 @@
         )
         )}}
     </div>
-    <div data-s="0.4" class="floating-image absolute left-[10%] top-[15%] w-[20%]">
+    <div class="floating-image absolute left-[10%] top-[15%] w-[20%]" data-s="0.4">
         {{ partial "image" (dict
         "img" "img/2022/both-portrait-aside-barrier.jpg"
         "opt" (dict
@@ -15,7 +16,7 @@
         )
         )}}
     </div>
-    <div data-s="0.7" class="floating-image absolute right-[10%] top-[50%] w-[40%]">
+    <div class="floating-image absolute right-[10%] top-[50%] w-[40%]" data-s="0.7">
         {{ partial "image" (dict
         "img" "img/2012/romane-portrait-on-barrier.jpg"
         "opt" (dict
@@ -23,7 +24,7 @@
         )
         )}}
     </div>
-    <div data-s="1.4" class="z-20 floating-image absolute left-[5%] top-[90%] w-[60%]">
+    <div class="z-20 floating-image absolute left-[5%] top-[90%] w-[60%]" data-s="1.4">
         {{ partial "image" (dict
         "img" "img/2012/both-landscape-wall.jpg"
         "opt" (dict
