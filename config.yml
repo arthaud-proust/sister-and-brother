@@ -1,5 +1,5 @@
 languageCode: 'fr'
-baseURL: ''
+baseURL: 'https://sista.arthaud.dev'
 removePathAccents: true
 
 params:
@@ -12,7 +12,7 @@ params:
     title: Une sœur et un frère
     desc: "En 2012, notre père nous immortalise sur les quais de Bordeaux. 10 ans plus tard, il nous proposa de refaire les photos"
     subject: "photo"
-    url: ''
+    url: 'https://sista.arthaud.dev'
     hero: /sprites/hero-min.png
     logo: /sprites/logo-min.png
     links:
