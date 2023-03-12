@@ -27,6 +27,8 @@
 
                 {{ with $opt.class }}
                 class="{{ . }}"
+                {{ else }}
+                class="h-full w-full"
                 {{ end }}
 
                 {{ with $opt.itemprop }}

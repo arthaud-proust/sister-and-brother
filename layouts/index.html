@@ -1,10 +1,38 @@
 {{ define "main" }}
 
 <section class="intro relative h-screen flex flex-col justify-center bg-primary">
-    <img data-s="0.4" data-grow="3" class="floating-image absolute -translate-x-1/2 left-[50%] top-[150%] w-[25%] md:w-[15%]" src="/img/2012/both-portrait-front-of-bridge.jpg" alt=" ">
-    <img data-s="0.4" class="floating-image absolute left-[10%] top-[15%] w-[20%]" src="/img/2022/both-portrait-aside-barrier.jpg" alt=" ">
-    <img data-s="0.7" class="floating-image absolute right-[10%] top-[50%] w-[40%]" src="/img/2012/romane-portrait-on-barrier.jpg" alt=" ">
-    <img data-s="1.4" class="z-20 floating-image absolute left-[5%] top-[90%] w-[60%]" src="/img/2012/both-landscape-wall.jpg" alt=" ">
+    <div data-s="0.4" data-grow="3" class="floating-image absolute -translate-x-1/2 left-[50%] top-[150%] w-[25%] md:w-[15%]">
+        {{ partial "image" (dict
+            "img" "img/2012/both-portrait-front-of-bridge.jpg"
+            "opt" (dict
+                "size" "400x"
+            )
+        )}}
+    </div>
+    <div data-s="0.4" class="floating-image absolute left-[10%] top-[15%] w-[20%]">
+        {{ partial "image" (dict
+        "img" "img/2022/both-portrait-aside-barrier.jpg"
+        "opt" (dict
+        "size" "300x"
+        )
+        )}}
+    </div>
+    <div data-s="0.7" class="floating-image absolute right-[10%] top-[50%] w-[40%]">
+        {{ partial "image" (dict
+        "img" "img/2012/romane-portrait-on-barrier.jpg"
+        "opt" (dict
+        "size" "600x"
+        )
+        )}}
+    </div>
+    <div data-s="1.4" class="z-20 floating-image absolute left-[5%] top-[90%] w-[60%]">
+        {{ partial "image" (dict
+        "img" "img/2012/both-landscape-wall.jpg"
+        "opt" (dict
+        "size" "1000x"
+        )
+        )}}
+    </div>
 
     <h1 class="text-center z-10 mix-blend-difference ">
         <span>Une sœur</span><br>
@@ -14,7 +42,14 @@
 
 <section class="py-24 mb-24 overflow-hidden">
     <section class="zoom relative h-screen flex flex-col justify-center md:p-24">
-        <img class="max-md:h-screen object-cover" src="/img/2012/both-landscape-tourniquet.jpg" alt=" ">
+        <div class="max-md:h-screen object-cover">
+            {{ partial "image" (dict
+            "img" "img/2012/both-landscape-tourniquet.jpg"
+            "opt" (dict
+            "size" "1600x"
+            )
+            )}}
+        </div>
         <h2 class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-center text-primary">Tous les dix ans</h2>
     </section>
 </section>
@@ -41,8 +76,22 @@
 <section class="py-24 overflow-hidden">
     <section class="test1 relative flex flex-row justify-end items-center h-screen container">
         <div class="relative w-[60vh] aspect-landscape">
-            <img class="before absolute w-full h-full inset-0 object-cover" src="/img/2012/both-landscape-wall.jpg" alt=" ">
-            <img class="after opacity-0 absolute w-full h-full inset-0 object-cover" src="/img/2022/both-landscape-wall.jpg" alt=" ">
+            <div class="before absolute w-full h-full inset-0 object-cover">
+                {{ partial "image" (dict
+                "img" "img/2012/both-landscape-wall.jpg"
+                "opt" (dict
+                "size" "800x"
+                )
+                )}}
+            </div>
+            <div class="after opacity-0 absolute w-full h-full inset-0 object-cover">
+                {{ partial "image" (dict
+                "img" "img/2022/both-landscape-wall.jpg"
+                "opt" (dict
+                "size" "800x"
+                )
+                )}}
+            </div>
         </div>
     </section>
 </section>
@@ -61,10 +110,24 @@
 </section>
 
 <section class="py-24 overflow-hidden">
-    <section class="test2 relative flex flex-row justify-end items-center h-screen container">
+    <section class="test2 relative flex flex-row justify-start items-center h-screen container">
         <div class="relative w-[60vh] aspect-portrait">
-            <img class="before absolute w-full h-full inset-0 object-contain" src="/img/2012/both-portrait-aside-barrier.jpg" alt=" ">
-            <img class="after opacity-0 absolute w-full h-full inset-0 object-contain" src="/img/2022/both-portrait-aside-barrier.jpg" alt=" ">
+            <div class="before absolute w-full h-full inset-0 object-cover">
+                {{ partial "image" (dict
+                "img" "img/2012/both-portrait-aside-barrier.jpg"
+                "opt" (dict
+                "size" "800x"
+                )
+                )}}
+            </div>
+            <div class="after opacity-0 absolute w-full h-full inset-0 object-cover">
+                {{ partial "image" (dict
+                "img" "img/2022/both-portrait-aside-barrier.jpg"
+                "opt" (dict
+                "size" "800x"
+                )
+                )}}
+            </div>
         </div>
     </section>
 </section>
@@ -86,10 +149,24 @@
 </section>
 
 <section class="py-24 overflow-hidden">
-    <section class="test3 relative flex flex-row justify-start items-center h-screen container">
+    <section class="test3 relative flex flex-row justify-end items-center h-screen container">
         <div class="relative w-[60vh] aspect-portrait">
-            <img class="before absolute w-full h-full inset-0 object-contain" src="/img/2012/romane-portrait-on-barrier.jpg" alt=" ">
-            <img class="after opacity-0 absolute w-full h-full inset-0 object-contain" src="/img/2022/romane-portrait-on-barrier.jpg" alt=" ">
+            <div class="before absolute w-full h-full inset-0 object-cover">
+                {{ partial "image" (dict
+                "img" "img/2012/romane-portrait-on-barrier.jpg"
+                "opt" (dict
+                "size" "800x"
+                )
+                )}}
+            </div>
+            <div class="after opacity-0 absolute w-full h-full inset-0 object-cover">
+                {{ partial "image" (dict
+                "img" "img/2022/romane-portrait-on-barrier.jpg"
+                "opt" (dict
+                "size" "800x"
+                )
+                )}}
+            </div>
         </div>
     </section>
 </section>
@@ -108,10 +185,24 @@
 </section>
 
 <section class="py-24 overflow-hidden">
-    <section class="test4 relative flex flex-row justify-end items-center h-screen container">
+    <section class="test4 relative flex flex-row justify-start items-center h-screen container">
         <div class="relative w-[60vh] aspect-landscape">
-            <img class="before absolute w-full h-full inset-0 object-contain" src="/img/2012/arthaud-landscape-on-barrier.jpg" alt=" ">
-            <img class="after opacity-0 absolute w-full h-full inset-0 object-contain" src="/img/2022/arthaud-landscape-on-barrier.jpg" alt=" ">
+            <div class="before absolute w-full h-full inset-0 object-cover">
+                {{ partial "image" (dict
+                "img" "img/2012/arthaud-landscape-on-barrier.jpg"
+                "opt" (dict
+                "size" "800x"
+                )
+                )}}
+            </div>
+            <div class="after opacity-0 absolute w-full h-full inset-0 object-cover">
+                {{ partial "image" (dict
+                "img" "img/2022/arthaud-landscape-on-barrier.jpg"
+                "opt" (dict
+                "size" "800x"
+                )
+                )}}
+            </div>
         </div>
     </section>
 </section>
@@ -120,8 +211,22 @@
 <section class="py-24 overflow-hidden">
     <section class="test5 relative flex flex-row justify-end items-center h-screen container">
         <div class="relative w-[60vh] aspect-portrait">
-            <img class="before absolute w-full h-full inset-0 object-contain" src="/img/2012/both-portrait-on-barrier.jpg" alt=" ">
-            <img class="after opacity-0 absolute w-full h-full inset-0 object-contain" src="/img/2022/both-portrait-on-barrier.jpg" alt=" ">
+            <div class="before absolute w-full h-full inset-0 object-cover">
+                {{ partial "image" (dict
+                "img" "img/2012/both-portrait-on-barrier.jpg"
+                "opt" (dict
+                "size" "800x"
+                )
+                )}}
+            </div>
+            <div class="after opacity-0 absolute w-full h-full inset-0 object-cover">
+                {{ partial "image" (dict
+                "img" "img/2022/both-portrait-on-barrier.jpg"
+                "opt" (dict
+                "size" "800x"
+                )
+                )}}
+            </div>
         </div>
     </section>
 </section>
