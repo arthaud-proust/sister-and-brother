@@ -1,4 +1,5 @@
 @import "fonts.css";
+@import "carbonbadge.css";
 
 @tailwind base;
 @tailwind components;

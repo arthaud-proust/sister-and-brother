@@ -1,0 +1,14 @@
+div#wcb.carbonbadge {
+    --b1: white;
+    --b2: transparent;
+    @apply p-4;
+}
+
+div#wcb div#wcb_p span#wcb_g,
+div#wcb div#wcb_p a#wcb_a {
+    @apply text-body bg-transparent p-0 m-0 border-0 min-w-0;
+}
+
+div#wcb div#wcb_p span#wcb_g {
+    @apply pr-2;
+}
