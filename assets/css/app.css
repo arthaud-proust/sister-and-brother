@@ -42,6 +42,10 @@ html {
         @apply text-base font-sans font-light;
     }
 
+    a {
+        @apply underline underline-offset-4 decoration-1;
+    }
+
     .text-cta {
         @apply text-xl font-sans font-light;
     }
