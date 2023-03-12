@@ -11,6 +11,24 @@ const smoother = ScrollSmoother.create({
 const isTouch = 'ontouchstart' in document.documentElement
 
 window.addEventListener("load", () => {
+    smoother.paused(true)
+
+    const loader = document.querySelector('#load');
+    gsap.to(loader.querySelector('h2'), {
+        delay: 0.5,
+        opacity: 0,
+        duration: 0.5
+    })
+    gsap.to(loader, {
+        delay: 1.3,
+        y: () => `-=${loader.offsetHeight}`,
+        duration: 0.6,
+        ease: "sine.out",
+        onComplete: () => {
+            smoother.paused(false)
+        }
+    })
+
     const totalScroll = document.body.scrollHeight - innerHeight;
 
     const tlIntro = gsap.timeline({
@@ -42,9 +60,6 @@ window.addEventListener("load", () => {
     }).from(".zoom > h2", {
         opacity: 0,
         ease: "sine.out"
-    }).to(".zoom > h2", {
-        opacity: 0,
-        ease: "sine.out"
     }).from(".zoom > div", {
         scale: 1.3,
         autoAlpha: 0,
@@ -53,7 +68,6 @@ window.addEventListener("load", () => {
 
     const BFimages = gsap.utils.toArray('.beforeAfter');
     BFimages.forEach(BFimage => {
-        console.log(BFimage.querySelector('.after'))
         gsap.timeline({
             scrollTrigger: {
                 scrub: 1,
