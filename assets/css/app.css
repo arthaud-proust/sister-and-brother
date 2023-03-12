@@ -43,7 +43,7 @@ html {
         @apply text-base font-sans font-light;
     }
 
-    a {
+    a, .link {
         @apply underline underline-offset-4 decoration-1;
     }
 
