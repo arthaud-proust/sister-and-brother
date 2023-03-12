@@ -18,6 +18,7 @@ window.addEventListener("load", () => {
             trigger: ".intro",
         },
         y: (i, target) => -totalScroll * target.dataset.s,
+        scale: (i, target) => target.dataset.grow || 1,
         ease: "none"
     });
 
@@ -33,54 +34,28 @@ window.addEventListener("load", () => {
         ease: "sine.out"
     });
 
+    addTriggerForPhotoSection('.test1');
+    addTriggerForPhotoSection('.test2');
+    addTriggerForPhotoSection('.test3');
+    addTriggerForPhotoSection('.test4');
+    addTriggerForPhotoSection('.test5');
+});
+
+function addTriggerForPhotoSection(className) {
     const tl = gsap.timeline({
         scrollTrigger: {
             pin: true,
             pinType: isTouch ? 'fixed' : 'transform',
             scrub: 1,
-            trigger: ".test"
+            trigger: className
         },
     })
-    tl.to(".test .after", {
+    tl.to(className +" .after", {
         opacity: 1,
         ease: "none"
     });
-    tl.to(".test .before", {
+    tl.to(className+" .before", {
         opacity: 0,
         ease: "none"
     });
-
-    const tl2 = gsap.timeline({
-        scrollTrigger: {
-            pin: true,
-            pinType: isTouch ? 'fixed' : 'transform',
-            scrub: 1,
-            trigger: ".test2"
-        },
-    })
-    tl2.to(".test2 .after", {
-        opacity: 1,
-        ease: "none"
-    });
-    tl2.to(".test2 .before", {
-        opacity: 0,
-        ease: "none"
-    });
-
-    const tl3 = gsap.timeline({
-        scrollTrigger: {
-            pin: true,
-            pinType: isTouch ? 'fixed' : 'transform',
-            scrub: 1,
-            trigger: ".test3"
-        },
-    })
-    tl3.to(".test3 .after", {
-        opacity: 1,
-        ease: "none"
-    });
-    tl3.to(".test3 .before", {
-        opacity: 0,
-        ease: "none"
-    });
-});
+}
