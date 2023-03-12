@@ -5,8 +5,13 @@ div#wcb.carbonbadge {
 }
 
 div#wcb div#wcb_p span#wcb_g,
-div#wcb div#wcb_p a#wcb_a {
+div#wcb div#wcb_p a#wcb_a,
+div#wcb span#wcb_2 {
     @apply text-body bg-transparent p-0 m-0 border-0 min-w-0;
+}
+
+div#wcb span#wcb_2 {
+    @apply italic;
 }
 
 div#wcb div#wcb_p span#wcb_g {
