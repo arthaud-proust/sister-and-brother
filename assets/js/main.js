@@ -14,7 +14,7 @@ window.addEventListener("load", () => {
         scrollTrigger: {
             pin: true,
             pinType: isTouch ? 'fixed' : 'transform',
-            scrub: 2,
+            scrub: 4,
             trigger: ".intro",
         }
     });
@@ -47,14 +47,14 @@ window.addEventListener("load", () => {
         ease: "sine.out"
     });
 
-    document.querySelectorAll('.beforeAfter').forEach((el, i)=>addTriggerForBeforeAfterSection(el,i))
+    document.querySelectorAll('.beforeAfter').forEach((el, i) => addTriggerForBeforeAfterSection(el, i))
 });
 
 function addTriggerForBeforeAfterSection(el, i) {
-    const className = 'beforeAfter-'+i;
-    const classSelector = '.'+className;
+    const className = 'beforeAfter-' + i;
+    const classSelector = '.' + className;
 
-    el.classList.add('beforeAfter-'+i);
+    el.classList.add('beforeAfter-' + i);
     const tl = gsap.timeline({
         scrollTrigger: {
             scrub: 1,
@@ -64,11 +64,11 @@ function addTriggerForBeforeAfterSection(el, i) {
         },
     })
 
-    tl.to(classSelector +" .after", {
+    tl.to(classSelector + " .after", {
         opacity: 1,
         ease: "none"
     });
-    tl.to(classSelector+" .before", {
+    tl.to(classSelector + " .before", {
         opacity: 0,
         ease: "none"
     });
