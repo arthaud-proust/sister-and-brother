@@ -15,7 +15,7 @@ module.exports = {
         },
         fontFamily: {
             'sans': ['Geomanist', ...defaultTheme.fontFamily.sans],
-            'display': ['Manuscribe'],
+            'display': ['Manuscribe', ...defaultTheme.fontFamily.sans],
         },
         colors: {
             primary: 'white',
