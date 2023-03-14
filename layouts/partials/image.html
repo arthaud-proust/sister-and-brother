@@ -1,43 +1,74 @@
-{{ $img := .img }}
+<!--@formatter:off-->
+{{ $img := resources.Get .img }}
 {{ $opt := .opt }}
-{{ with resources.Get $img }}
+{{ if $img }}
     {{ if $opt.size }}
-        {{ $resized := .Resize $opt.size }}
+        {{ $imageResized := $img.Resize $opt.size }}
+        {{ $sizes := slice "160x" "320x" "640x" "1280x"}}
+        {{ $imagesWebp := slice }}
+        {{ $imagesJpg := slice }}
 
-        <img
-                src="{{ $resized.Permalink }}"
-                height="{{ $resized.Height }}"
-                width="{{ $resized.Width }}"
+        {{ range $size := $sizes }}
+            {{ $imagesWebp = append ($img.Resize (printf "%s webp" $size) ) $imagesWebp }}
+        {{ end }}
 
-                {{ if $opt.loading }}
-                loading="{{ $opt.loading }}"
-                {{ else }}
-                loading="lazy"
-                {{ end }}
+        {{ range $size := $sizes }}
+            {{ $imagesJpg = append ($img.Resize (printf "%s jpg" $size) ) $imagesJpg }}
+        {{ end }}
 
-                {{ if $opt.alt }}
-                alt="{{ $opt.alt }}"
-                {{ else }}
-                alt=" "
-                {{ end }}
+        <picture class="lazy-picture">
+            <source
+                    type="image/webp"
+                    srcset="
+                    {{ range $imageR := $imagesWebp }}
+                        {{ $imageR.Permalink }} {{ $imageR.Width }}w,
+                    {{ end }}
+                        "
+            />
+            <source
+                    type="image/jpg"
+                    srcset="
+                    {{ range $imageR := $imagesJpg }}
+                        {{ $imageR.Permalink }} {{ $imageR.Width }}w,
+                    {{ end }}
+                        "
+            />
+            <img
+                    src="{{ $imageResized.Permalink }}"
+                    height="{{ $imageResized.Height }}"
+                    width="{{ $imageResized.Width }}"
+                    sizes="{{ $opt.size }}"
 
-                {{ with $opt.id }}
-                id="{{ . }}"
-                {{ end }}
+                    {{ if $opt.loading }}
+                    loading="{{ $opt.loading }}"
+                    {{ else }}
+                    loading="lazy"
+                    {{ end }}
 
-                {{ with $opt.class }}
-                class="{{ . }}"
-                {{ else }}
-                class="h-full w-full object-cover"
-                {{ end }}
+                    {{ if $opt.alt }}
+                    alt="{{ $opt.alt }}"
+                    {{ else }}
+                    alt=" "
+                    {{ end }}
 
-                {{ with $opt.itemprop }}
-                itemprop="{{ . }}"
-                {{ end }}
+                    {{ with $opt.id }}
+                    id="{{ . }}"
+                    {{ end }}
 
-                {{ with $opt.inlineCss }}
-                style="{{ . }}"
-                {{ end }}
-        />
+                    {{ with $opt.class }}
+                    class="{{ . }}"
+                    {{ else }}
+                    class="h-full w-full object-cover"
+                    {{ end }}
+
+                    {{ with $opt.itemprop }}
+                    itemprop="{{ . }}"
+                    {{ end }}
+
+                    {{ with $opt.inlineCss }}
+                    style="{{ . }}"
+                    {{ end }}
+            />
+        </picture>
     {{ end }}
 {{ end }}
