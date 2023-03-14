@@ -1,74 +1,72 @@
 <!--@formatter:off-->
 {{ $img := resources.Get .img }}
 {{ $opt := .opt }}
-{{ if $img }}
-    {{ if $opt.size }}
-        {{ $imageResized := $img.Resize $opt.size }}
-        {{ $sizes := slice "160x" "320x" "640x" "1280x"}}
-        {{ $imagesWebp := slice }}
-        {{ $imagesJpg := slice }}
+{{ if and $img $opt.size}}
+    {{ $sizes := slice "160x" "320x" "640x" "1280x"}}
 
+    <picture class="lazy-picture">
+        {{ $imagesWebp := slice }}
         {{ range $size := $sizes }}
             {{ $imagesWebp = append ($img.Resize (printf "%s webp" $size) ) $imagesWebp }}
         {{ end }}
+        <source
+                type="image/webp"
+                srcset="
+                {{ range $imageR := $imagesWebp }}
+                    {{ $imageR.Permalink }} {{ $imageR.Width }}w,
+                {{ end }}
+                    "
+        />
 
+        {{ $imagesJpg := slice }}
         {{ range $size := $sizes }}
             {{ $imagesJpg = append ($img.Resize (printf "%s jpg" $size) ) $imagesJpg }}
         {{ end }}
+        <source
+                type="image/jpg"
+                srcset="
+                {{ range $imageR := $imagesJpg }}
+                    {{ $imageR.Permalink }} {{ $imageR.Width }}w,
+                {{ end }}
+                    "
+        />
 
-        <picture class="lazy-picture">
-            <source
-                    type="image/webp"
-                    srcset="
-                    {{ range $imageR := $imagesWebp }}
-                        {{ $imageR.Permalink }} {{ $imageR.Width }}w,
-                    {{ end }}
-                        "
-            />
-            <source
-                    type="image/jpg"
-                    srcset="
-                    {{ range $imageR := $imagesJpg }}
-                        {{ $imageR.Permalink }} {{ $imageR.Width }}w,
-                    {{ end }}
-                        "
-            />
-            <img
-                    src="{{ $imageResized.Permalink }}"
-                    height="{{ $imageResized.Height }}"
-                    width="{{ $imageResized.Width }}"
-                    sizes="{{ $opt.size }}"
+        {{ $imageResized := $img.Resize $opt.size }}
+        <img
+                src="{{ $imageResized.Permalink }}"
+                height="{{ $imageResized.Height }}"
+                width="{{ $imageResized.Width }}"
+                sizes="{{ $opt.size }}"
 
-                    {{ if $opt.loading }}
-                    loading="{{ $opt.loading }}"
-                    {{ else }}
-                    loading="lazy"
-                    {{ end }}
+                {{ if $opt.loading }}
+                loading="{{ $opt.loading }}"
+                {{ else }}
+                loading="lazy"
+                {{ end }}
 
-                    {{ if $opt.alt }}
-                    alt="{{ $opt.alt }}"
-                    {{ else }}
-                    alt=" "
-                    {{ end }}
+                {{ if $opt.alt }}
+                alt="{{ $opt.alt }}"
+                {{ else }}
+                alt=" "
+                {{ end }}
 
-                    {{ with $opt.id }}
-                    id="{{ . }}"
-                    {{ end }}
+                {{ with $opt.id }}
+                id="{{ . }}"
+                {{ end }}
 
-                    {{ with $opt.class }}
-                    class="{{ . }}"
-                    {{ else }}
-                    class="h-full w-full object-cover"
-                    {{ end }}
+                {{ with $opt.class }}
+                class="{{ . }}"
+                {{ else }}
+                class="h-full w-full object-cover"
+                {{ end }}
 
-                    {{ with $opt.itemprop }}
-                    itemprop="{{ . }}"
-                    {{ end }}
+                {{ with $opt.itemprop }}
+                itemprop="{{ . }}"
+                {{ end }}
 
-                    {{ with $opt.inlineCss }}
-                    style="{{ . }}"
-                    {{ end }}
-            />
-        </picture>
-    {{ end }}
+                {{ with $opt.inlineCss }}
+                style="{{ . }}"
+                {{ end }}
+        />
+    </picture>
 {{ end }}
