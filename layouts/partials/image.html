@@ -5,17 +5,14 @@
     {{ $sizes := slice "160x" "320x" "640x" "1280x"}}
 
     <picture class="lazy-picture">
-        {{ $imagesWebp := slice }}
-        {{ range $size := $sizes }}
-            {{ $imagesWebp = append ($img.Resize (printf "%s webp" $size) ) $imagesWebp }}
-        {{ end }}
         <source
                 type="image/webp"
-                srcset="
-                {{ range $imageR := $imagesWebp }}
+                srcset='
+                {{ range $size := $sizes }}
+                    {{ $imageR := $img.Resize (printf "%s webp" $size) }}
                     {{ $imageR.Permalink }} {{ $imageR.Width }}w,
                 {{ end }}
-                    "
+                    '
         />
 
         {{ $imagesJpg := slice }}
@@ -24,11 +21,12 @@
         {{ end }}
         <source
                 type="image/jpg"
-                srcset="
-                {{ range $imageR := $imagesJpg }}
+                srcset='
+                {{ range $size := $sizes }}
+                    {{ $imageR := $img.Resize (printf "%s jpg" $size) }}
                     {{ $imageR.Permalink }} {{ $imageR.Width }}w,
                 {{ end }}
-                    "
+                    '
         />
 
         {{ $imageResized := $img.Resize $opt.size }}
