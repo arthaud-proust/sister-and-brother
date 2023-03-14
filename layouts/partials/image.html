@@ -3,28 +3,26 @@
 {{ $opt := .opt }}
 {{ if and $img $opt.size}}
     {{ $sizes := slice "160x" "320x" "640x" "1280x"}}
-
+    {{ $sizesLen := (len $sizes) }}
     <picture class="lazy-picture">
         <source
                 type="image/webp"
+                sizes="{{ $opt.sizes }}"
                 srcset='
-                {{ range $size := $sizes }}
+                {{ range $index, $size := $sizes }}
                     {{ $imageR := $img.Resize (printf "%s webp" $size) }}
-                    {{ $imageR.Permalink }} {{ $imageR.Width }}w,
+                    {{ $imageR.Permalink }} {{ $imageR.Width }}w{{if ne (add $index 1) $sizesLen }},{{ end }}
                 {{ end }}
                     '
         />
 
-        {{ $imagesJpg := slice }}
-        {{ range $size := $sizes }}
-            {{ $imagesJpg = append ($img.Resize (printf "%s jpg" $size) ) $imagesJpg }}
-        {{ end }}
         <source
                 type="image/jpg"
+                sizes="{{ $opt.sizes }}"
                 srcset='
-                {{ range $size := $sizes }}
+                {{ range $index, $size := $sizes }}
                     {{ $imageR := $img.Resize (printf "%s jpg" $size) }}
-                    {{ $imageR.Permalink }} {{ $imageR.Width }}w,
+                    {{ $imageR.Permalink }} {{ $imageR.Width }}w{{if ne (add $index 1) $sizesLen }},{{ end }}
                 {{ end }}
                     '
         />
@@ -34,7 +32,6 @@
                 src="{{ $imageResized.Permalink }}"
                 height="{{ $imageResized.Height }}"
                 width="{{ $imageResized.Width }}"
-                sizes="{{ $opt.size }}"
 
                 {{ if $opt.loading }}
                 loading="{{ $opt.loading }}"
