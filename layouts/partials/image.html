@@ -4,7 +4,7 @@
 {{ if and $img $opt.size}}
     {{ $sizes := slice "160x" "320x" "640x" "1280x"}}
     {{ $sizesLen := (len $sizes) }}
-    <picture class="lazy-picture">
+    <picture>
         <source
                 type="image/webp"
                 sizes="{{ $opt.sizes }}"
