@@ -1,35 +1,79 @@
 gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
 
+let isFirstStop = true;
+let isScrolling = true
 const smoother = ScrollSmoother.create({
     smooth: 1.5,               // how long (in seconds) it takes to "catch up" to the native scroll position
     effects: true,           // looks for data-speed and data-lag attributes on elements
     smoothTouch: 0,
     normalizeScroll: true,
+    onUpdate: () => {
+        if (isScrolling) {
+            return
+        }
+
+        isScrolling = true;
+        hideScrollHint();
+    },
+    onStop: (e) => {
+        if (isFirstStop) {
+            isFirstStop = false;
+            hideScrollHint();
+            return
+        }
+        if (!isScrolling) {
+            return
+        }
+
+        isScrolling = false;
+        showScrollHint()
+    },
     // ignoreMobileResize: true,
 });
+
+function showScrollHint() {
+    gsap.fromTo(
+        document.getElementById('scrollHint'),
+        {opacity: 0},
+        {
+            opacity: 1,
+            duration: 1
+        })
+}
+
+function hideScrollHint() {
+    gsap.fromTo(
+        document.getElementById('scrollHint'),
+        {opacity: 1},
+        {
+            opacity: 0,
+            duration: 1
+        })
+}
 
 const isTouch = 'ontouchstart' in document.documentElement
 
 window.addEventListener("load", () => {
-    smoother.paused(true)
+    const totalScroll = document.body.scrollHeight - innerHeight;
 
     const loader = document.querySelector('#load');
     gsap.to(loader.querySelector('h2'), {
         delay: 0.5,
-        opacity: 0,
-        duration: 0.5
-    })
-    gsap.to(loader, {
-        delay: 1.3,
-        y: () => `-=${loader.offsetHeight}`,
-        duration: 0.6,
-        ease: "sine.out",
-        onComplete: () => {
-            smoother.paused(false)
-        }
+        opacity: 1,
+        duration: 1,
+        onComplete: showScrollHint
     })
 
-    const totalScroll = document.body.scrollHeight - innerHeight;
+    gsap.to(loader, {
+        scrollTrigger: {
+            pin: true,
+            pinType: isTouch ? 'fixed' : 'transform',
+            scrub: 1,
+            trigger: loader
+        },
+        opacity: 0,
+    })
+
 
     const tlIntro = gsap.timeline({
         scrollTrigger: {
@@ -38,14 +82,11 @@ window.addEventListener("load", () => {
             scrub: 1,
             trigger: ".intro"
         }
-    });
-    tlIntro.to(".floating-image", {
+    }).to(".floating-image", {
         y: (i, target) => -totalScroll * target.dataset.s,
         scale: (i, target) => target.dataset.grow || 1,
         ease: "none"
-    });
-
-    tlIntro.to(".intro-text", {
+    }).to(".intro-text", {
         opacity: -0.6,
         ease: "none"
     });

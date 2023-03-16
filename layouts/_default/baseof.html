@@ -46,13 +46,15 @@
             {{- partial "header" . -}}
 
             <main>
+                {{ partial "load" . }}
                 {{- block "main" . }}{{- end }}
             </main>
         </div>
 
         {{- partial "footer" . -}}
     </div>
+
+    {{- partial "scroll-hint" . -}}
 </div>
-{{ partial "load" . }}
 </body>
 </html>
