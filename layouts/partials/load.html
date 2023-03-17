@@ -1,5 +1,7 @@
 <section id="load">
-    <h2>Proust</h2>
+    <div class="h2-container">
+        <h2>Proust</h2>
+    </div>
 </section>
 <style>
     #load {
@@ -13,7 +15,19 @@
         align-items: center;
     }
 
+    #load .h2-container {
+        overflow: hidden;
+    }
     #load h2 {
         opacity: 0;
+        font-size: 4.5rem;
+        line-height: 1;
+        transform-origin: left bottom;
+    }
+    @media (min-width: 768px) {
+        #load h2 {
+            font-size: 6rem;
+            line-height: 1;
+        }
     }
 </style>

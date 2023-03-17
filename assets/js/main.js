@@ -31,24 +31,45 @@ const smoother = ScrollSmoother.create({
     // ignoreMobileResize: true,
 });
 
-function showScrollHint() {
+function showScrollHint(delay=0) {
     gsap.fromTo(
         document.getElementById('scrollHint'),
         {opacity: 0},
         {
             opacity: 1,
-            duration: 1
+            duration: 1,
+            delay,
         })
 }
 
-function hideScrollHint() {
+function hideScrollHint(delay=0) {
     gsap.fromTo(
         document.getElementById('scrollHint'),
         {opacity: 1},
         {
             opacity: 0,
-            duration: 1
+            duration: 1,
+            delay,
         })
+}
+
+function showText(el, params) {
+    gsap.fromTo(el,
+        {
+            opacity: 0,
+            y: 200,
+            rotate: 40,
+        },
+        {
+            opacity: 1,
+            y: 0,
+            rotate: 0,
+            delay: 0.7,
+            duration: 0.6,
+            ease: Power2.easeOut,
+            ...params
+        }
+    )
 }
 
 const isTouch = 'ontouchstart' in document.documentElement
@@ -57,12 +78,13 @@ window.addEventListener("load", () => {
     const totalScroll = document.body.scrollHeight - innerHeight;
 
     const loader = document.querySelector('#load');
-    gsap.to(loader.querySelector('h2'), {
-        delay: 0.5,
-        opacity: 1,
-        duration: 1,
-        onComplete: showScrollHint
-    })
+
+    showText(
+        loader.querySelector('h2'),
+        {
+            onComplete: ()=>showScrollHint(0.5)
+        }
+    )
 
     gsap.to(loader, {
         scrollTrigger: {
