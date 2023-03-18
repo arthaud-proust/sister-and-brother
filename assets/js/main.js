@@ -173,17 +173,21 @@ window.addEventListener("load", () => {
 
     const BFimages = gsap.utils.toArray('.beforeAfter');
     BFimages.forEach(BFimage => {
-        gsap.timeline({
-            scrollTrigger: {
-                scrub: 1,
-                start: 'center center',
-                end: 'bottom center',
-                trigger: BFimage,
-            },
-        }).to(BFimage.querySelector('.after'), {
+        const st = {
+            scrub: 1,
+            start: 'top+=20% center',
+            end: 'bottom-=20% center',
+            trigger: BFimage,
+            markers: true
+        };
+
+        gsap.to(BFimage.querySelector('.after'), {
+            scrollTrigger: st,
             opacity: 1,
             ease: "none"
-        }).to(BFimage.querySelector('.before'), {
+        })
+        gsap.to(BFimage.querySelector('.before'), {
+            scrollTrigger: st,
             opacity: 0,
             ease: "none"
         });
