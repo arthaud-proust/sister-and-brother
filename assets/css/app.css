@@ -44,7 +44,18 @@ html {
     }
 
     a, .link {
-        @apply underline underline-offset-4 decoration-1;
+        @apply decoration-1 relative;
+    }
+
+    a::after, .link::after {
+        @apply absolute bottom-0 left-1/2 -translate-x-1/2 w-full border-b;
+        content: '';
+        transition: .2s;
+    }
+
+    a:hover::after, .link:hover::after {
+        @apply w-2/3;
+        content: '';
     }
 
     .text-cta {
