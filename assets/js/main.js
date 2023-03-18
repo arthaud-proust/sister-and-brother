@@ -175,22 +175,22 @@ window.addEventListener("load", () => {
     BFimages.forEach(BFimage => {
         const st = {
             scrub: 1,
-            start: 'top+=20% center',
-            end: 'bottom-=20% center',
+            start: 'center-=20% center',
+            end: 'center+=20% center',
             trigger: BFimage,
-            markers: true
         };
 
-        gsap.to(BFimage.querySelector('.after'), {
+
+        gsap.to(BFimage.querySelector('.before .imageContainer'), {
             scrollTrigger: st,
-            opacity: 1,
+            xPercent: 100,
             ease: "none"
         })
-        gsap.to(BFimage.querySelector('.before'), {
+        gsap.to(BFimage.querySelector('.before .imageContainer img'), {
             scrollTrigger: st,
-            opacity: 0,
+            xPercent: -100,
             ease: "none"
-        });
+        })
     });
 
     const tlOutro = gsap.timeline({
