@@ -113,14 +113,46 @@ window.addEventListener("load", () => {
         opacity: 1,
         ease: "none",
     })
-    gsap.to(".floating-image img", {
-        scrollTrigger: {
-            scrub: 1,
-            trigger: ".intro",
-        },
-        scale: (i, target) => target.dataset.grow || 1.4,
-        ease: "none"
-    })
+    // gsap.to(".floating-image img", {
+    //     scrollTrigger: {
+    //         scrub: 1,
+    //         trigger: ".intro",
+    //     },
+    //     scale: (i, target) => target.dataset.grow || 1.4,
+    //     ease: "none"
+    // })
+
+    const floatingImages = gsap.utils.toArray(".image");
+    floatingImages.forEach((floatingImage) => {
+        const floatingImageSelector = gsap.utils.selector(floatingImage);
+
+        const animParams = {
+            duration: 2,
+            ease: Expo.easeOut,
+            paused: true
+        };
+        const imageAnimation = gsap.from(floatingImageSelector("img"), {
+            yPercent: -100,
+            ...animParams
+        });
+
+        const imageContainerAnimation = gsap.from(floatingImageSelector(".imageContainer"), {
+            yPercent: 100,
+            ...animParams
+        });
+
+
+        gsap.timeline({
+            scrollTrigger: {
+                trigger: floatingImage,
+                start: "top top+=70%",
+                onEnter: () => {
+                    imageAnimation.play();
+                    imageContainerAnimation.play();
+                }
+            }
+        });
+    });
 
     const tlZoom = gsap.timeline({
         scrollTrigger: {
@@ -144,9 +176,9 @@ window.addEventListener("load", () => {
         gsap.timeline({
             scrollTrigger: {
                 scrub: 1,
-                start: 'top center',
+                start: 'center center',
                 end: 'bottom center',
-                trigger: BFimage
+                trigger: BFimage,
             },
         }).to(BFimage.querySelector('.after'), {
             opacity: 1,

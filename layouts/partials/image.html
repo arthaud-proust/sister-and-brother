@@ -4,64 +4,68 @@
 {{ if and $img $opt.size}}
     {{ $sizes := slice "160x" "320x" "640x" "1280x"}}
     {{ $sizesLen := (len $sizes) }}
-    <picture>
-        <source
-                type="image/webp"
-                sizes="{{ $opt.sizes }}"
-                srcset='
-                {{ range $index, $size := $sizes }}
-                    {{ $imageR := $img.Resize (printf "%s webp" $size) }}
-                    {{ $imageR.Permalink }} {{ $imageR.Width }}w{{if ne (add $index 1) $sizesLen }},{{ end }}
-                {{ end }}
-                    '
-        />
+    <div class="image overflow-hidden">
+        <div class="imageContainer overflow-hidden">
+            <picture>
+                <source
+                        type="image/webp"
+                        sizes="{{ $opt.sizes }}"
+                        srcset='
+                        {{ range $index, $size := $sizes }}
+                            {{ $imageR := $img.Resize (printf "%s webp" $size) }}
+                            {{ $imageR.Permalink }} {{ $imageR.Width }}w{{if ne (add $index 1) $sizesLen }},{{ end }}
+                        {{ end }}
+                            '
+                />
 
-        <source
-                type="image/jpg"
-                sizes="{{ $opt.sizes }}"
-                srcset='
-                {{ range $index, $size := $sizes }}
-                    {{ $imageR := $img.Resize (printf "%s jpg" $size) }}
-                    {{ $imageR.Permalink }} {{ $imageR.Width }}w{{if ne (add $index 1) $sizesLen }},{{ end }}
-                {{ end }}
-                    '
-        />
+                <source
+                        type="image/jpg"
+                        sizes="{{ $opt.sizes }}"
+                        srcset='
+                        {{ range $index, $size := $sizes }}
+                            {{ $imageR := $img.Resize (printf "%s jpg" $size) }}
+                            {{ $imageR.Permalink }} {{ $imageR.Width }}w{{if ne (add $index 1) $sizesLen }},{{ end }}
+                        {{ end }}
+                            '
+                />
 
-        {{ $imageResized := $img.Resize $opt.size }}
-        <img
-                src="{{ $imageResized.Permalink }}"
-                height="{{ $imageResized.Height }}"
-                width="{{ $imageResized.Width }}"
+                {{ $imageResized := $img.Resize $opt.size }}
+                <img
+                        src="{{ $imageResized.Permalink }}"
+                        height="{{ $imageResized.Height }}"
+                        width="{{ $imageResized.Width }}"
 
-                {{ if $opt.loading }}
-                loading="{{ $opt.loading }}"
-                {{ else }}
-                loading="lazy"
-                {{ end }}
+                        {{ if $opt.loading }}
+                        loading="{{ $opt.loading }}"
+                        {{ else }}
+                        loading="lazy"
+                        {{ end }}
 
-                {{ if $opt.alt }}
-                alt="{{ $opt.alt }}"
-                {{ else }}
-                alt=" "
-                {{ end }}
+                        {{ if $opt.alt }}
+                        alt="{{ $opt.alt }}"
+                        {{ else }}
+                        alt=" "
+                        {{ end }}
 
-                {{ with $opt.id }}
-                id="{{ . }}"
-                {{ end }}
+                        {{ with $opt.id }}
+                        id="{{ . }}"
+                        {{ end }}
 
-                {{ with $opt.class }}
-                class="{{ . }}"
-                {{ else }}
-                class="h-full w-full object-cover"
-                {{ end }}
+                        {{ with $opt.class }}
+                        class="{{ . }}"
+                        {{ else }}
+                        class="h-full w-full object-cover"
+                        {{ end }}
 
-                {{ with $opt.itemprop }}
-                itemprop="{{ . }}"
-                {{ end }}
+                        {{ with $opt.itemprop }}
+                        itemprop="{{ . }}"
+                        {{ end }}
 
-                {{ with $opt.inlineCss }}
-                style="{{ . }}"
-                {{ end }}
-        />
-    </picture>
+                        {{ with $opt.inlineCss }}
+                        style="{{ . }}"
+                        {{ end }}
+                />
+            </picture>
+        </div>
+    </div>
 {{ end }}
