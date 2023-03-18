@@ -96,7 +96,7 @@ window.addEventListener("load", () => {
             pin: true,
             pinType: isTouch ? 'fixed' : 'transform',
             scrub: 1,
-            trigger: loader
+            trigger: loader,
         },
         opacity: 0,
     })
@@ -107,7 +107,7 @@ window.addEventListener("load", () => {
             scrub: 1,
             trigger: ".intro",
             start: "5% center",
-            end: "25% center"
+            end: "25% center",
         },
         opacity: 1,
         ease: "none",
@@ -121,21 +121,13 @@ window.addEventListener("load", () => {
         ease: "none"
     })
 
-    // gsap.to(".intro-text", {
-    //     scrollTrigger: {
-    //         scrub: 1,
-    //         trigger: ".intro"
-    //     },
-    //     opacity: 0,
-    //     ease: "none"
-    // })
-
     const tlZoom = gsap.timeline({
         scrollTrigger: {
             pin: true,
             pinType: isTouch ? 'fixed' : 'transform',
             scrub: 2,
-            trigger: ".zoom"
+            trigger: ".zoom",
+            end: "250% top",
         },
     }).from(".zoom > h2", {
         opacity: 0,
