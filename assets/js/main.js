@@ -7,7 +7,7 @@ const smoother = ScrollSmoother.create({
     effects: true,           // looks for data-speed and data-lag attributes on elements
     smoothTouch: 0,
     normalizeScroll: true,
-    onUpdate: () => {
+    onUpdate: (scroller) => {
         if (isScrolling) {
             return
         }
@@ -15,13 +15,18 @@ const smoother = ScrollSmoother.create({
         isScrolling = true;
         hideScrollHint();
     },
-    onStop: (e) => {
+    onStop: (scroller) => {
         if (isFirstStop) {
             isFirstStop = false;
             hideScrollHint();
             return
         }
+
         if (!isScrolling) {
+            return
+        }
+
+        if (scroller.progress > 0.95) {
             return
         }
 
@@ -31,7 +36,7 @@ const smoother = ScrollSmoother.create({
     // ignoreMobileResize: true,
 });
 
-function showScrollHint(delay=0) {
+function showScrollHint(delay = 0) {
     gsap.fromTo(
         document.getElementById('scrollHint'),
         {opacity: 0},
@@ -42,7 +47,7 @@ function showScrollHint(delay=0) {
         })
 }
 
-function hideScrollHint(delay=0) {
+function hideScrollHint(delay = 0) {
     gsap.fromTo(
         document.getElementById('scrollHint'),
         {opacity: 1},
@@ -82,7 +87,7 @@ window.addEventListener("load", () => {
     showText(
         loader.querySelector('h2'),
         {
-            onComplete: ()=>showScrollHint(0.5)
+            onComplete: () => showScrollHint(0.5)
         }
     )
 
@@ -97,21 +102,33 @@ window.addEventListener("load", () => {
     })
 
 
-    const tlIntro = gsap.timeline({
+    gsap.to(".intro-text", {
         scrollTrigger: {
-            pin: true,
-            pinType: isTouch ? 'fixed' : 'transform',
             scrub: 1,
-            trigger: ".intro"
-        }
-    }).to(".floating-image", {
-        y: (i, target) => -totalScroll * target.dataset.s,
-        scale: (i, target) => target.dataset.grow || 1,
+            trigger: ".intro",
+            start: "5% center",
+            end: "25% center"
+        },
+        opacity: 1,
+        ease: "none",
+    })
+    gsap.to(".floating-image img", {
+        scrollTrigger: {
+            scrub: 1,
+            trigger: ".intro",
+        },
+        scale: (i, target) => target.dataset.grow || 1.4,
         ease: "none"
-    }).to(".intro-text", {
-        opacity: -0.6,
-        ease: "none"
-    });
+    })
+
+    // gsap.to(".intro-text", {
+    //     scrollTrigger: {
+    //         scrub: 1,
+    //         trigger: ".intro"
+    //     },
+    //     opacity: 0,
+    //     ease: "none"
+    // })
 
     const tlZoom = gsap.timeline({
         scrollTrigger: {
