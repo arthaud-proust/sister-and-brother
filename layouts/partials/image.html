@@ -4,8 +4,8 @@
 {{ if and $img $opt.size}}
     {{ $sizes := slice "160x" "320x" "640x" "1280x"}}
     {{ $sizesLen := (len $sizes) }}
-    <div class="image overflow-hidden">
-        <div class="imageContainer overflow-hidden">
+    <div class="image overflow-hidden h-full w-full">
+        <div class="imageContainer overflow-hidden h-full w-full">
             <picture>
                 <source
                         type="image/webp"
