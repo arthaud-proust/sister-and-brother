@@ -97,6 +97,7 @@ window.addEventListener("load", () => {
             pinType: isTouch ? 'fixed' : 'transform',
             scrub: 1,
             trigger: loader,
+            end: "90% top",
         },
         opacity: 0,
     })
