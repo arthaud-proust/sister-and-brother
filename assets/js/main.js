@@ -1,12 +1,10 @@
 gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
 
-let isFirstStop = true;
 let isScrolling = true
 const smoother = ScrollSmoother.create({
     smooth: 1.5,               // how long (in seconds) it takes to "catch up" to the native scroll position
     effects: true,           // looks for data-speed and data-lag attributes on elements
     smoothTouch: 0,
-    normalizeScroll: true,
     onUpdate: (scroller) => {
         if (isScrolling) {
             return
@@ -16,12 +14,6 @@ const smoother = ScrollSmoother.create({
         hideScrollHint();
     },
     onStop: (scroller) => {
-        if (isFirstStop) {
-            isFirstStop = false;
-            hideScrollHint();
-            return
-        }
-
         if (!isScrolling) {
             return
         }
