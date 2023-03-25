@@ -39,7 +39,7 @@
     <meta content="{{ $description }}" name="twitter:description"/>
     {{ end }}
 </head>
-<body class="bg-secondary font-sans text-primary text-xl">
+<body class="bg-secondary font-sans text-primary text-xl cursor-none">
 <div id="smooth-wrapper">
     <div id="smooth-content">
         <div class="min-h-screen">
@@ -50,11 +50,12 @@
                 {{- block "main" . }}{{- end }}
             </main>
         </div>
-        
+
         {{- partial "footer" . -}}
     </div>
 
     {{- partial "scroll-hint" . -}}
+    {{- partial "cursor" . -}}
 </div>
 </body>
 </html>

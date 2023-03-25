@@ -1,6 +1,6 @@
 gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
 
-let isScrolling = true
+let isScrolling = false
 const smoother = ScrollSmoother.create({
     smooth: 1.5,               // how long (in seconds) it takes to "catch up" to the native scroll position
     effects: true,           // looks for data-speed and data-lag attributes on elements
@@ -195,5 +195,11 @@ window.addEventListener("load", () => {
     }).to(".outro-inner", {
         opacity: 1,
         ease: "none"
-    });
+    }).fromTo("#cursor1", {
+            scale: 1,
+        },
+        {
+            scale: 5,
+            ease: "none"
+        });
 });

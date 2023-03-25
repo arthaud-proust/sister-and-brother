@@ -8,8 +8,11 @@
 <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
 <script defer src="/js/smooth.js"></script>
 
-{{- $script := resources.Get "js/main.js" -}}
-<script defer src="{{ $script.RelPermalink }}"></script>
+{{- $mainScript := resources.Get "js/main.js" -}}
+<script defer src="{{ $mainScript.RelPermalink }}"></script>
+
+{{- $cursorScript := resources.Get "js/cursor.js" -}}
+<script defer src="{{ $cursorScript.RelPermalink }}"></script>
 
 {{- $fontsStyle := resources.Get "css/fonts.css" -}}
 <link as="style" href="{{ $fontsStyle.RelPermalink }}" onload="this.onload=null;this.rel='stylesheet'" rel="preload">
