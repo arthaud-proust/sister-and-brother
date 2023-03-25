@@ -1,0 +1,42 @@
+<div class="md:text-right">
+    <p>
+        Analyse <a href="https://www.websitecarbon.com/" target="_blank" rel="noopener">Website Carbon</a>
+    </p>
+    <p>
+        <span id="carbon-co2">Chargement...</span>
+    </p>
+    <p id="carbon-bytes"></p>
+    <p class="italic" id="carbon-result"></p>
+
+    <script>
+        const urlToFetch = "https://api.websitecarbon.com/site?url=sista.arthaud.dev";
+        const carbonCo2 = document.getElementById('carbon-co2');
+        const carbonBytes = document.getElementById('carbon-bytes');
+        const carbonResult = document.getElementById('carbon-result');
+
+        function roundDecimals(number, decimals) {
+            const d = Math.pow(10, decimals)
+            return Math.round(number * d) / d
+        }
+
+        async function fetchCarbonResult() {
+            const response = await fetch(urlToFetch);
+            const json = await response.json();
+
+            console.log(json)
+            carbonCo2.innerText = `${roundDecimals(json.statistics.co2.grid.grams, 3)}g de CO2/visite`;
+            const kb = json.bytes / 1000;
+            const mb = kb / 1000;
+            if (kb < 100) {
+                carbonBytes.innerText = `La page pèse ${roundDecimals(kb, 3)} Ko`;
+            } else {
+                carbonBytes.innerText = `La page pèse ${roundDecimals(mb, 3)} Mo`;
+            }
+
+            const cleanerThanPercent = json.cleanerThan * 100;
+            carbonResult.innerText = `Plus léger que ${cleanerThanPercent}% des pages testées`;
+        }
+
+        fetchCarbonResult()
+    </script>
+</div>
