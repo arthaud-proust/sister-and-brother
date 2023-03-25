@@ -9,13 +9,13 @@ class Cursor {
 
     hide() {
         gsap.to(this.el, 0.4, {
-            scale: 0
+            opacity: 0
         });
     }
 
     show() {
         gsap.to(this.el, 0.4, {
-            scale: 1
+            opacity: 1
         });
     }
 
