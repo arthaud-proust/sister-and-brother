@@ -1,54 +1,93 @@
-const cursorEl = document.getElementById('cursor');
-const speed = 0.5;
+class Cursor {
+    el;
+    speed
 
-function moveCursorTo(x, y, instant = false) {
-    gsap.to(cursorEl, instant ? 0 : 0.4, {
-        x,
-        y
-    });
+    constructor(el, speed) {
+        this.el = el
+        this.speed = speed
+    }
+
+    hide() {
+        gsap.to(this.el, 0.4, {
+            scale: 0
+        });
+    }
+
+    show() {
+        gsap.to(this.el, 0.4, {
+            scale: 1
+        });
+    }
+
+    moveTo(x, y, instant = false) {
+        gsap.to(this.el, instant ? 0 : this.speed, {
+            x,
+            y
+        });
+    }
+
 }
 
-function showCursor() {
-    gsap.to(cursorEl, 0.4, {
-        scale: 1
-    });
+class CursorList {
+    cursors = [];
+
+    addCursor(cursor) {
+        this.cursors.push(cursor)
+
+        return this;
+    }
+
+    moveAllTo(x, y, instant) {
+        this.cursors.forEach(cursor => {
+            cursor.moveTo(x, y, instant)
+        })
+    }
+
+    hideAll() {
+        this.cursors.forEach(cursor => {
+            cursor.hide()
+        })
+    }
+
+    showAll() {
+        this.cursors.forEach(cursor => {
+            cursor.show()
+        })
+    }
+
+    registerEvents() {
+        document.addEventListener('mousemove', (e) => {
+            this.moveAllTo(e.clientX, e.clientY)
+        })
+
+        document.addEventListener('mouseenter', (e) => {
+            this.moveAllTo(e.clientX, e.clientY, true)
+            this.showAll()
+        })
+
+        document.addEventListener('mouseleave', (e) => {
+            this.hideAll()
+        })
+
+
+        gsap.utils.toArray('.image, a').forEach(img => {
+            img.addEventListener('mouseenter', (e) => {
+                this.hideAll()
+            })
+
+            img.addEventListener('mouseleave', (e) => {
+                this.showAll()
+            })
+        })
+
+    }
 }
 
-function hideCursor() {
-    gsap.to(cursorEl, 0.4, {
-        scale: 0
-    });
-}
+const cursorList = new CursorList();
+cursorList.addCursor(new Cursor(document.getElementById('cursor1'), 0.5))
+cursorList.addCursor(new Cursor(document.getElementById('cursor2'), 0.2))
+cursorList.registerEvents()
 
-window.addEventListener('mousemove', (e) => {
-    moveCursorTo(e.clientX, e.clientY)
-})
 
-document.addEventListener('mouseenter', (e) => {
-    moveCursorTo(e.clientX, e.clientY, true)
-    showCursor()
-})
 
-document.addEventListener('mouseleave', (e) => {
-    hideCursor()
-})
 
-gsap.utils.toArray('.image').forEach(img => {
-    img.addEventListener('mousemove', (e) => {
-        hideCursor()
-    })
-
-    img.addEventListener('mouseleave', (e) => {
-        showCursor()
-    })
-})
-
-gsap.utils.toArray('a').forEach(a => {
-    a.addEventListener('mousemove', (e) => {
-        hideCursor()
-    })
-
-    a.addEventListener('mouseleave', (e) => {
-        showCursor()
-    })
-})
