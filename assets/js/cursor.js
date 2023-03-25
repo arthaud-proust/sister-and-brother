@@ -70,7 +70,7 @@ class CursorList {
         })
 
 
-        gsap.utils.toArray('.image, a').forEach(img => {
+        gsap.utils.toArray('a').forEach(img => {
             img.addEventListener('mouseenter', (e) => {
                 this.hideAll()
             })
