@@ -5,38 +5,58 @@
     <p>
         <span id="carbon-co2">Chargement...</span>
     </p>
-    <p id="carbon-bytes"></p>
     <p class="italic" id="carbon-result"></p>
 
     <script>
-        const urlToFetch = "https://api.websitecarbon.com/site?url=sista.arthaud.dev";
+        const urlToFetch = "https://api.websitecarbon.com/b?url=";
+        const wcU = encodeURIComponent('https://sista.arthaud.dev/')
         const carbonCo2 = document.getElementById('carbon-co2');
-        const carbonBytes = document.getElementById('carbon-bytes');
         const carbonResult = document.getElementById('carbon-result');
 
-        function roundDecimals(number, decimals) {
-            const d = Math.pow(10, decimals)
-            return Math.round(number * d) / d
+        async function fetchCarbonResult() {
+            try {
+                const response = await fetch(urlToFetch + wcU);
+                const json = await response.json();
+
+                renderResult(json);
+
+                json.t = new Date().getTime()
+                localStorage.setItem('wcb_' + wcU, JSON.stringify(json))
+            } catch (e) {
+                carbonCo2.innerText = "";
+                carbonResult.innerText = `Impossible de récupérer les résultats`;
+
+                console.error(e)
+            }
         }
 
-        async function fetchCarbonResult() {
-            const response = await fetch(urlToFetch);
-            const json = await response.json();
+        function renderResult(result) {
+            carbonCo2.innerText = `${result.c}g de CO2/visite`;
+            carbonResult.innerText = `Plus léger que ${result.p}% des pages testées`;
+        }
 
-            console.log(json)
-            carbonCo2.innerText = `${roundDecimals(json.statistics.co2.grid.grams, 3)}g de CO2/visite`;
-            const kb = json.bytes / 1000;
-            const mb = kb / 1000;
-            if (kb < 100) {
-                carbonBytes.innerText = `La page pèse ${roundDecimals(kb, 3)} Ko`;
-            } else {
-                carbonBytes.innerText = `La page pèse ${roundDecimals(mb, 3)} Mo`;
+        function displayCarbonResult() {
+            const cachedResponse = localStorage.getItem('wcb_' + wcU)
+            const todayTimestamp = new Date().getTime()
+            const dayTimestamp = 86400000;
+
+            if (!cachedResponse) {
+                fetchCarbonResult()
+                return;
             }
 
-            const cleanerThanPercent = json.cleanerThan * 100;
-            carbonResult.innerText = `Plus léger que ${cleanerThanPercent}% des pages testées`;
+            const json = JSON.parse(cachedResponse)
+
+            renderResult(json)
+
+            const timeSinceLastRequest = todayTimestamp - json.t;
+            if (timeSinceLastRequest > dayTimestamp) {
+                fetchCarbonResult()
+            }
         }
 
-        fetchCarbonResult()
+        if ('fetch' in window) {
+            displayCarbonResult();
+        }
     </script>
 </div>
