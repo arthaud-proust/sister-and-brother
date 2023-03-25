@@ -55,7 +55,16 @@ class CursorList {
         })
     }
 
+    toAll(callback) {
+        this.cursors.forEach(callback)
+    }
+
     registerEvents() {
+        document.addEventListener('click', (e) => {
+            this.toAll(cursor => gsap.to(cursor.el, 0.4, {
+                rotate: "+=45deg"
+            }))
+        })
         document.addEventListener('mousemove', (e) => {
             this.moveAllTo(e.clientX, e.clientY)
         })

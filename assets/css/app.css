@@ -71,4 +71,12 @@ html {
     .btn:hover {
         @apply text-primary bg-secondary;
     }
+
+    .cursor {
+        @apply opacity-0 max-md:hidden fixed top-0 left-0 z-50 mix-blend-difference pointer-events-none;
+    }
+
+    .cursor-inner {
+        @apply absolute top-0 left-0 h-6 -translate-x-1/2 -translate-y-1/2 aspect-square bg-primary pointer-events-none;
+    }
 }
