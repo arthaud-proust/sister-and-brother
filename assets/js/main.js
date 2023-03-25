@@ -172,6 +172,33 @@ window.addEventListener("load", () => {
             trigger: BFimage,
         };
 
+        BFimage.addEventListener("mousedown", e => BFimage.dragging = true)
+
+        BFimage.addEventListener("mouseup", e => BFimage.dragging = false)
+        BFimage.addEventListener("mouseleave", e => BFimage.dragging = false)
+
+        BFimage.addEventListener("mouseup", e => {
+            BFimage.dragging = false
+        })
+
+        BFimage.addEventListener("mousemove", e => {
+            if (!BFimage.dragging) {
+                return
+            }
+            const boundingClientRect = BFimage.getBoundingClientRect();
+            const advancement = e.x - boundingClientRect.x;
+            const percent = 100 * advancement / boundingClientRect.width
+
+            gsap.to(BFimage.querySelector('.before .imageContainer'), {
+                xPercent: percent,
+                ease: "none"
+            })
+            gsap.to(BFimage.querySelector('.before .imageContainer img'), {
+                xPercent: -percent,
+                ease: "none"
+            })
+        })
+
 
         gsap.to(BFimage.querySelector('.before .imageContainer'), {
             scrollTrigger: st,
